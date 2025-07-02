@@ -1,0 +1,19 @@
+.table {
+  background: #fff;
+}
+
+.shadow {
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.15) !important;
+}
+
+.rounded {
+  border-radius: 8px !important;
+}
+
+input.form-control-sm {
+  font-size: 13px;
+}
+
+
+
+

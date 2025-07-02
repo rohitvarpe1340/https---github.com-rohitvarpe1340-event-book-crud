@@ -1,0 +1,79 @@
+<!-- adds event section -->
+
+<h2 class="mb-3 mt-5 text-center text-warning"><b>Add New Event</b></h2>
+  <form (submit)="addEvent()" class="row gy-2 gx-3 align-items-center shadow p-3 rounded bg-light">
+    <div class="col-md-2">
+      <input class="form-control form-control-sm" [(ngModel)]="newEvent.name" name="name" placeholder="Name" required>
+    </div>
+    <div class="col-md-2">
+      <input class="form-control form-control-sm" [(ngModel)]="newEvent.email" name="email" placeholder="Email" required>
+    </div>
+    <div class="col-md-2">
+      <input class="form-control form-control-sm" [(ngModel)]="newEvent.phone" name="phone" placeholder="Phone" required>
+    </div>
+    <div class="col-md-2">
+      <input class="form-control form-control-sm" [(ngModel)]="newEvent.event" name="event" placeholder="Event" required>
+    </div>
+    <div class="col-md-2">
+      <input class="form-control form-control-sm" [(ngModel)]="newEvent.location" name="location" placeholder="Location" required>
+    </div>
+    <div class="col-md-2">
+      <input class="form-control form-control-sm" [(ngModel)]="newEvent.message" name="message" placeholder="Message" required>
+    </div>
+  <div class="col-12 text-center mt-2">
+    <button class="btn btn-warning" type="submit">
+      <i class="bi bi-plus-circle"></i> Add Event
+    </button>
+  </div>
+</form>
+
+
+
+<!-- table section -->
+<div class="container mt-4">
+  <h2 class="mb-4 text-center text-warning"><b>EVENT LIST</b></h2>
+  <div class="table-responsive shadow rounded">
+    <table class="table table-bordered table-hover align-middle">
+      <thead class="table-dark text-center">
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Phone</th>
+          <th>Event</th>
+          <th>Location</th>
+          <th>Message</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let e of events">
+          <td>{{ e.name }}</td>
+          <td>{{ e.email }}</td>
+          <td>{{ e.phone }}</td>
+          <td>{{ e.event }}</td>
+          <td>{{ e.location }}</td>
+          <td>{{ e.message }}</td>
+          <td class="text-center">
+            <div class="d-flex justify-content-center gap-2">
+              <button class="btn btn-outline-primary btn-sm" (click)="openEditModal(e)">
+                <i class="bi bi-pencil"></i> Edit
+              </button>
+              <button class="btn btn-outline-danger btn-sm" (click)="deleteEvent(e.id)">
+                <i class="bi bi-trash"></i> Delete
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+
+
+<app-popup
+  [editingEvent]="editingEvent"
+  [showModal]="showModal"
+  (updateDone)="loadEvents(); showModal=false;"
+></app-popup>
+
+
